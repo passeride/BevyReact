@@ -12,16 +12,20 @@ function App() {
    * useEffect(() => {
    *   loadWasm();
    * }, []); */
+  useEffect(() => {
+    test.default();
+  });
 
   return (
     <div className="App">
       {/* {wasm ? wasm.init() : null} */}
-      {test.default()}
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <canvas id="game" className="game" width={1080} height={720} />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
+        <button onClick={() => test.move_click()}>Click</button>
         <a
           className="App-link"
           href="https://reactjs.org"

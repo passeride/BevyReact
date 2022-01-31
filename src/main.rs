@@ -1,7 +1,25 @@
 use bevy::prelude::*;
+use std::cell::RefCell;
+use wasm_bindgen::prelude::*;
+
+thread_local!(static GLOBAL_DATA: RefCell<bool> = RefCell::new(false));
+
+#[wasm_bindgen]
+pub fn move_click() {
+    GLOBAL_DATA.with(|text| *text.borrow_mut() = true);
+}
 
 fn main() {
     App::new()
+        .insert_resource(WindowDescriptor {
+            title: "I am a window!".to_string(),
+            #[cfg(target_arch = "wasm32")]
+            canvas: Some(String::from(".game")),
+            width: 500.,
+            height: 300.,
+            vsync: true,
+            ..Default::default()
+        })
         .add_plugins(DefaultPlugins)
         .add_startup_system(setup)
         .add_system(movement)
@@ -222,6 +240,11 @@ fn movement(
 ) {
     for mut transform in query.iter_mut() {
         let mut direction = Vec3::ZERO;
+        GLOBAL_DATA.with(move |text| {
+            if *text.borrow() {
+                direction.y += 5.0;
+            }
+        });
         if input.pressed(KeyCode::Up) {
             direction.y += 1.0;
         }
