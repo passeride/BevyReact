@@ -1,0 +1,22 @@
+#+TITLE: README
+#+AUTHOR: [[mailto:post@passeride.com][Lukas H L]]
+#+DATE:  <2022-01-30 sø.><2022-01-30 sø.>
+
+* README
+
+* Build wasm-bindgen
+
+#+begin_src bash
+cargo build --release --target wasm32-unknown-unknown
+wasm-bindgen --out-dir ./out/ --target web ./target/wasm32-unknown-unknown/release/BevyTest.wasm
+#+end_src
+
+* WASM-pack
+#+begin_src bash
+wasm-pack build
+#+end_src
+
+* TODO Will have to check this out
+
+- State "TODO"       from              [2022-01-31 ma. 14:24]
+[[https://medium.com/@anksaiki/using-web-assembly-in-a-react-app-8b59e5e9f5aa][Using Web Assembly in a React App | by Ankur Saikia | Medium]]
