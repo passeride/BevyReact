@@ -1,0 +1,13 @@
+{
+  "name": "BevyTest",
+  "version": "0.1.0",
+  "files": [
+    "BevyTest_bg.wasm",
+    "BevyTest.js",
+    "BevyTest_bg.js",
+    "BevyTest.d.ts"
+  ],
+  "module": "BevyTest.js",
+  "types": "BevyTest.d.ts",
+  "sideEffects": false
+}

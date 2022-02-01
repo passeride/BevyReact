@@ -1,3 +1,4 @@
 /target
 .log
-out
+out/**
+!out/package.json

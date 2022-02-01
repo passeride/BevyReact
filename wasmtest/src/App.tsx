@@ -20,23 +20,11 @@ function App() {
     <div className="App">
       {/* {wasm ? wasm.init() : null} */}
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <canvas id="game" className="game" width={1080} height={720} />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
         <button onClick={() => test.move_up()}>Up</button>
         <button onClick={() => test.move_down()}>Down</button>
         <button onClick={() => test.move_right()}>Right</button>
         <button onClick={() => test.move_left()}>Left</button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
