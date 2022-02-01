@@ -2,11 +2,29 @@ use bevy::prelude::*;
 use std::cell::RefCell;
 use wasm_bindgen::prelude::*;
 
-thread_local!(static GLOBAL_DATA: RefCell<bool> = RefCell::new(false));
+thread_local!(static GLOBAL_MOVE_UP: RefCell<bool> = RefCell::new(false));
+thread_local!(static GLOBAL_MOVE_DOWN: RefCell<bool> = RefCell::new(false));
+thread_local!(static GLOBAL_MOVE_RIGHT: RefCell<bool> = RefCell::new(false));
+thread_local!(static GLOBAL_MOVE_LEFT: RefCell<bool> = RefCell::new(false));
 
 #[wasm_bindgen]
-pub fn move_click() {
-    GLOBAL_DATA.with(|text| *text.borrow_mut() = true);
+pub fn move_up() {
+    GLOBAL_MOVE_UP.with(|text| *text.borrow_mut() = true);
+}
+
+#[wasm_bindgen]
+pub fn move_down() {
+    GLOBAL_MOVE_DOWN.with(|text| *text.borrow_mut() = true);
+}
+
+#[wasm_bindgen]
+pub fn move_right() {
+    GLOBAL_MOVE_RIGHT.with(|text| *text.borrow_mut() = true);
+}
+
+#[wasm_bindgen]
+pub fn move_left() {
+    GLOBAL_MOVE_LEFT.with(|text| *text.borrow_mut() = true);
 }
 
 fn main() {
@@ -240,9 +258,28 @@ fn movement(
 ) {
     for mut transform in query.iter_mut() {
         let mut direction = Vec3::ZERO;
-        GLOBAL_DATA.with(move |text| {
+        GLOBAL_MOVE_LEFT.with(|text| {
             if *text.borrow() {
-                direction.y += 5.0;
+                direction.x -= 1.0;
+                *text.borrow_mut() = false;
+            }
+        });
+        GLOBAL_MOVE_RIGHT.with(|text| {
+            if *text.borrow() {
+                direction.x += 1.0;
+                *text.borrow_mut() = false;
+            }
+        });
+        GLOBAL_MOVE_UP.with(|text| {
+            if *text.borrow() {
+                direction.y += 1.0;
+                *text.borrow_mut() = false;
+            }
+        });
+        GLOBAL_MOVE_DOWN.with(|text| {
+            if *text.borrow() {
+                direction.y -= 1.0;
+                *text.borrow_mut() = false;
             }
         });
         if input.pressed(KeyCode::Up) {

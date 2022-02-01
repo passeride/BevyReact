@@ -25,7 +25,10 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <button onClick={() => test.move_click()}>Click</button>
+        <button onClick={() => test.move_up()}>Up</button>
+        <button onClick={() => test.move_down()}>Down</button>
+        <button onClick={() => test.move_right()}>Right</button>
+        <button onClick={() => test.move_left()}>Left</button>
         <a
           className="App-link"
           href="https://reactjs.org"
